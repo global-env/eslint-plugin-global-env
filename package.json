@@ -1,26 +1,36 @@
 {
   "name": "eslint-plugin-global-env",
   "version": "0.0.0",
-  "description": "Eslint rules for global.env usage.",
+  "description": "ESLint rules for global.env usage.",
   "keywords": [
     "eslint",
-    "eslintplugin",
-    "eslint-plugin"
+    "plugin",
+    "eslint-plugin",
+    "global",
+    "env",
+    "global-env"
   ],
   "author": "Jordan Gensler <jordangens@gmail.com>",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha tests --recursive"
+    "build": "babel ./src -d ./lib",
+    "lint": "eslint ./src ./tests",
+    "jest": "jest --config ./jest.json",
+    "pretest": "npm run lint",
+    "test": "npm run jest"
   },
   "dependencies": {
     "requireindex": "~1.1.0"
   },
   "devDependencies": {
-    "eslint": "~3.9.1",
-    "mocha": "^3.1.2"
-  },
-  "engines": {
-    "node": ">=0.10.0"
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^19.0.0",
+    "babel-preset-env": "^1.4.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0",
+    "jest": "^19.0.2"
   },
   "license": "MIT"
 }
