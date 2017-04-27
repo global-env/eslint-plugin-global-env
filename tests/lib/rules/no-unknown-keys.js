@@ -1,31 +1,17 @@
-/**
- * @fileoverview Prevents usage of undefined keys on global.env.
- * @author Jordan Gensler
- */
-"use strict";
+const rule = require('../../../lib/rules/no-unknown-keys').default;
+const RuleTester = require('eslint').RuleTester;
 
-//------------------------------------------------------------------------------
-// Requirements
-//------------------------------------------------------------------------------
+const ruleTester = new RuleTester();
 
-var rule = require("../../../lib/rules/no-unknown-keys");
-var RuleTester = require("eslint").RuleTester;
-
-
-//------------------------------------------------------------------------------
-// Tests
-//------------------------------------------------------------------------------
-
-var ruleTester = new RuleTester();
-ruleTester.run("no-unknown-keys", rule, {
+ruleTester.run('no-unknown-keys', rule, {
   valid: [
-    "global.env.current",
-    "global.env.production",
-    "global.env.development",
+    'global.env.current',
+    'global.env.production',
+    'global.env.development',
     "global.env.is('test')",
-    "env.current",
-    "env.production",
-    "env.development",
+    'env.current',
+    'env.production',
+    'env.development',
     "env.is('test')",
     `
       var env = {};
@@ -43,18 +29,18 @@ ruleTester.run("no-unknown-keys", rule, {
 
   invalid: [
     {
-      code: "global.env.test",
+      code: 'global.env.test',
       errors: [{
-        message: "'test' is not a valid property on global.env.",
-        type: "Identifier"
-      }]
+        message: '"test" is not a valid property on global.env.',
+        type: 'Identifier',
+      }],
     },
     {
-      code: "env.test",
+      code: 'env.test',
       errors: [{
-          message: "'test' is not a valid property on global.env.",
-          type: "Identifier"
-      }]
-    }
-  ]
+        message: '"test" is not a valid property on global.env.',
+        type: 'Identifier',
+      }],
+    },
+  ],
 });
