@@ -1,9 +1,7 @@
-const rule = require('../../../lib/rules/no-unknown-keys').default;
-const RuleTester = require('eslint').RuleTester;
+import { RuleTester } from 'eslint';
+import rule from '../../src/rules/no-unknown-keys';
 
-const ruleTester = new RuleTester();
-
-ruleTester.run('no-unknown-keys', rule, {
+new RuleTester().run('no-unknown-keys', rule, {
   valid: [
     'global.env.current',
     'global.env.production',
